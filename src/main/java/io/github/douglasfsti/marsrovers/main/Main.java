@@ -3,27 +3,29 @@ package io.github.douglasfsti.marsrovers.main;
 import io.github.douglasfsti.marsrovers.controllers.RoverController;
 import io.github.douglasfsti.marsrovers.entities.CardinalPoint;
 import io.github.douglasfsti.marsrovers.entities.Coordinate;
+import io.github.douglasfsti.marsrovers.entities.Plateau;
 import io.github.douglasfsti.marsrovers.entities.Rover;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String args[]) {
-        // plateau 5,5
-        // rover 1,2 N
-        // command LMLMLMLMM
+        Scanner scannerStdin = new Scanner(System.in);
 
-        // Rover rover = new Rover(CardinalPoint.N, new Coordinate(1, 2));
+        Plateau plateau = new Plateau(new Coordinate(scannerStdin.nextInt(),
+                scannerStdin.nextInt()));
 
-        // RoverController roverController = new RoverController(rover);
-        // roverController.explore("LMLMLMLMM");
-        
-        // plateau 5,5
-        // rover 3,3 E
-        // command MMRMMRMRRM
+        while (scannerStdin.hasNext()) {
+            int x = scannerStdin.nextInt();
+            int y = scannerStdin.nextInt();
+            String cardinal = scannerStdin.next();
+            String command = scannerStdin.next();
 
-        // Rover rover = new Rover(CardinalPoint.E, new Coordinate(3, 3));
+            Rover rover = new Rover(CardinalPoint.getCardinal(cardinal),
+                    new Coordinate(x, y));
 
-        // RoverController roverController = new RoverController(rover);
-        // roverController.explore("MMRMMRMRRM");
+            RoverController roverController = new RoverController(rover, plateau);
+            System.out.println(roverController.explore(command));
+        }
     }
 }
