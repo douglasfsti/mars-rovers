@@ -2,15 +2,18 @@ package io.github.douglasfsti.marsrovers.controllers;
 
 import io.github.douglasfsti.marsrovers.entities.CardinalPoint;
 import io.github.douglasfsti.marsrovers.entities.Command;
+import io.github.douglasfsti.marsrovers.entities.Plateau;
 import io.github.douglasfsti.marsrovers.entities.Rover;
 
 public class RoverController {
 
     private Rover rover;
+    private Plateau plateau;
     private CardinalPointController cardinalPointController;
 
-    public RoverController(Rover rover) {
+    public RoverController(Rover rover, Plateau plateau) {
         this.rover = rover;
+        this.plateau = plateau;
         this.cardinalPointController = new CardinalPointController();
     }
 
@@ -31,18 +34,19 @@ public class RoverController {
     private void rotate(Command cmd) {
         if (cmd != Command.M) {
             this.rover.setCardinal(this.cardinalPointController
-                    .getCardinalByCommand(this.rover.getCardinal(), cmd));
+                    .getCardinalByCommand(this.rover.getCardinal(), cmd,
+                            this.plateau));
         }
     }
 
-    public void explore(String commands) {
+    public String explore(String commands) {
         for (char cmd : commands.toCharArray()) {
             Command command = Command.getCommand(cmd + "");
             rotate(command);
             move(command);
         }
 
-        System.out.println(rover.getPosition());
+        return rover.getPosition();
     }
 
 }
