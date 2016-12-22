@@ -1,5 +1,8 @@
 # MARS ROVERS
 
+[![Coverage Status](https://coveralls.io/repos/github/douglasfsti/mars-rovers/badge.svg?branch=master)](https://coveralls.io/github/douglasfsti/mars-rovers?branch=master)
+[![Build Status](https://travis-ci.org/douglasfsti/mars-rovers.svg?branch=master)](https://travis-ci.org/douglasfsti/mars-rovers)
+
 A squad of robotic rovers are to be landed by NASA on a plateau on Mars. This plateau, which is curiously rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the surrounding terrain to send back to Earth.
 
 A rover's position and location is represented by a combination of x and y co-ordinates and a letter representing one of the four cardinal compass points. The plateau is divided up into a grid to simplify navigation. Na example position might be 0, 0, N, which means the rover is in the bottom left corner and facing North.
