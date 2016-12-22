@@ -10,10 +10,13 @@ import static org.junit.Assert.*;
 
 import io.github.douglasfsti.marsrovers.entities.CardinalPoint;
 import io.github.douglasfsti.marsrovers.entities.Command;
+import io.github.douglasfsti.marsrovers.entities.Coordinate;
+import io.github.douglasfsti.marsrovers.entities.Plateau;
 
 public class CardinalPointTest {
 
     CardinalPointController cardinal;
+    Plateau plateau;
 
     public CardinalPointTest() {
     }
@@ -29,6 +32,7 @@ public class CardinalPointTest {
     @Before
     public void setUp() {
         this.cardinal = new CardinalPointController();
+        this.plateau = new Plateau(new Coordinate(5, 5));
     }
 
     @After
@@ -37,28 +41,28 @@ public class CardinalPointTest {
 
     @Test
     public void shouldReturnNorthWhenCardinalIsNorthAndCommandIsMove() {
-        CardinalPoint response = this.cardinal.getCardinalByCommand(CardinalPoint.N, Command.M);
+        CardinalPoint response = this.cardinal.getCardinalByCommand(CardinalPoint.N, Command.M, plateau);
 
         assertEquals(CardinalPoint.N, response);
     }
 
     @Test
     public void shouldReturnWestWhenCardinalIsNorthAndCommandIsLeft() {
-        CardinalPoint response = this.cardinal.getCardinalByCommand(CardinalPoint.N, Command.L);
+        CardinalPoint response = this.cardinal.getCardinalByCommand(CardinalPoint.N, Command.L, plateau);
 
         assertEquals(CardinalPoint.W, response);
     }
 
     @Test
     public void shouldReturnWestWhenCardinalIsSouthAndCommandIsRight() {
-        CardinalPoint response = this.cardinal.getCardinalByCommand(CardinalPoint.S, Command.R);
+        CardinalPoint response = this.cardinal.getCardinalByCommand(CardinalPoint.S, Command.R, plateau);
 
         assertEquals(CardinalPoint.W, response);
     }
 
     @Test
     public void shouldReturnNorthWhenCardinalIsWestAndCommandIsRight() {
-        CardinalPoint response = this.cardinal.getCardinalByCommand(CardinalPoint.W, Command.R);
+        CardinalPoint response = this.cardinal.getCardinalByCommand(CardinalPoint.W, Command.R, plateau);
 
         assertEquals(CardinalPoint.N, response);
     }
